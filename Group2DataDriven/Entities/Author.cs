@@ -15,7 +15,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return $"#{ID}: {Name} ({BirthDate:dd/MM/yyyy} - {DeathDate})";
+            return $"#{ID}: {Name} ({BirthDate:dd/MM/yyyy} - {DeathDate:dd/MM/yyyy})";
         }
     }
 }
