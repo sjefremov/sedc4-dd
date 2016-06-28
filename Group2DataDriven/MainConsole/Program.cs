@@ -29,6 +29,8 @@ namespace MainConsole
             {
                 int authorId = int.Parse(Console.ReadLine());
                 var author = a.GetAuthor(authorId);
+                //var name = Console.ReadLine();
+                //var author = a.GetAuthorByName(name);
                 Console.WriteLine(author);
             }
             

@@ -10,6 +10,48 @@ namespace DataLayer
 {
     public class AuthorRepository : IAuthorRepository
     {
+        private SqlConnection connection;
+
+        public AuthorRepository()
+        {
+            connection = new SqlConnection(@"Server=PALMYRA02\SQLEXPRESS;Database=ScienceFictionDB;Trusted_Connection=True;");
+            connection.Open();
+        }
+
+        public Author GetAuthorByName(string name)
+        {
+            using (SqlCommand cmd = new SqlCommand("select top 1 * from authors where Name like '%' + @name + '%'", connection))
+            {
+                cmd.Parameters.AddWithValue("@name", name);
+
+                //var result = (int)cmd.ExecuteScalar();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                    {
+                        return null;
+                    }
+
+                    var resultId = (int)reader["ID"];
+                    var resultName = (string)reader["Name"];
+                    var birthDate = (DateTime)reader["DateOfBirth"];
+                    var deathDate = reader["DateOfDeath"] as DateTime?;
+                    
+                    var author = new Author
+                    {
+                        ID = resultId,
+                        Name = resultName,
+                        BirthDate = birthDate,
+                        DeathDate = deathDate
+                    };
+
+                    return author;
+                }
+                
+            }
+            
+        }
+
         public bool DeleteAuthor(int id)
         {
             throw new NotImplementedException();
@@ -27,45 +69,36 @@ namespace DataLayer
 
         public Author GetAuthor(int id)
         {
-            SqlConnection connection = new SqlConnection(@"Server=PALMYRA02\SQLEXPRESS;Database=ScienceFictionDB;Trusted_Connection=True;");
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand("select * from authors where id = " + id, connection);
-
-            //var result = (int)cmd.ExecuteScalar();
-
-            var reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            using (SqlCommand cmd = new SqlCommand("select * from authors where id = @id ", connection))
             {
-                var resultId = (int)reader["ID"];
-                var name = (string)reader["Name"];
-                var birthDate = (DateTime)reader["DateOfBirth"];
-                var deathDate = reader["DateOfDeath"] as DateTime?;
-                
-                var author = new Author
+                cmd.Parameters.AddWithValue("@id", id);
+
+                //var result = (int)cmd.ExecuteScalar();
+                using (var reader = cmd.ExecuteReader())
                 {
-                    ID = resultId,
-                    Name = name,
-                    BirthDate = birthDate,
-                    DeathDate = deathDate
-                };
+                    if (!reader.Read())
+                    {
+                        return null;
+                    }
 
-                return author;
+                    var resultId = (int)reader["ID"];
+                    var name = (string)reader["Name"];
+                    var birthDate = (DateTime)reader["DateOfBirth"];
+                    var deathDate = reader["DateOfDeath"] as DateTime?;
+                    
+                    var author = new Author
+                    {
+                        ID = resultId,
+                        Name = name,
+                        BirthDate = birthDate,
+                        DeathDate = deathDate
+                    };
+
+                    return author;
+                }
+
             }
-            else
-            {
-                return null;
-            }
-
-            //Console.WriteLine(result);
-
-            return null;
-            //connect to database
-            //make query
-            //send query 
-            //get result
-            //create author
+            
         }
 
         public Author SaveAuthor(Author author)
