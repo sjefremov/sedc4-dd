@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,9 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
-      <Project>{734056c2-3544-41b8-9f7f-4cae9f65a5b0}</Project>
-      <Name>DataLayer</Name>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{0c5d78f8-fecd-4a27-a487-c37b7b1edc2a}</Project>
+      <Name>BusinessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{8064632f-faf1-4674-bdeb-4ce93e82bbb0}</Project>

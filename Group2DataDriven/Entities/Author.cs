@@ -13,6 +13,8 @@ namespace Entities
         public DateTime BirthDate { get; set; }
         public DateTime? DeathDate { get; set; }
 
+        public IEnumerable<Novel> Novels { get; set; }
+
         public override string ToString()
         {
             return $"#{ID}: {Name} ({BirthDate:dd/MM/yyyy} - {DeathDate:dd/MM/yyyy})";
