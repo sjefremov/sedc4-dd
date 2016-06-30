@@ -24,14 +24,16 @@ namespace MainConsole
 
             //Console.WriteLine("-------------");
 
-            var a = new AuthorRepository();
-            while (true)
+            using (var a = new AuthorRepository())
             {
-                int authorId = int.Parse(Console.ReadLine());
-                var author = a.GetAuthor(authorId);
-                //var name = Console.ReadLine();
-                //var author = a.GetAuthorByName(name);
-                Console.WriteLine(author);
+                //while (true)
+                //{
+                    int authorId = int.Parse(Console.ReadLine());
+                    var author = a.GetAuthor(authorId);
+                    //var name = Console.ReadLine();
+                    //var author = a.GetAuthorByName(name);
+                    Console.WriteLine(author);
+                //}
             }
             
         }

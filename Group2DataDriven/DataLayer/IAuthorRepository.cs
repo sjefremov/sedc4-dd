@@ -1,9 +1,10 @@
 ﻿using Entities;
+using System;
 using System.Collections.Generic;
 
 namespace DataLayer
 {
-    public interface IAuthorRepository
+    public interface IAuthorRepository : IDisposable
     {
         Author GetAuthor(int id);
         IEnumerable<Author> GetAllAuthors();
