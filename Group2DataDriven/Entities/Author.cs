@@ -13,6 +13,8 @@ namespace Entities
         public DateTime BirthDate { get; set; }
         public DateTime? DeathDate { get; set; }
 
+        public int? NovelCount { get; set; }
+
         public IEnumerable<Novel> Novels { get; set; }
 
         public override string ToString()

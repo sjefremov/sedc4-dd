@@ -17,6 +17,18 @@ namespace BusinessLayer
             authorRepository = new AuthorRepository(connectionString);
             novelRepository = new NovelRepository(connectionString);
         }
+
+        public IEnumerable<Author> GetAllAuthors()
+        {
+            var authors = authorRepository.GetAllAuthors();
+
+            foreach (var author in authors)
+            {
+                author.Novels = novelRepository.GetNovels(author.ID);
+            }
+
+            return authors;
+        }
         public Author LoadAuthor(int id, bool loadNovels)
         {
             var author = authorRepository.GetAuthor(id);

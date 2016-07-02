@@ -37,11 +37,11 @@ namespace MainConsole
                 //}
 
 
-                //var allAuthors = a.GetAllAuthors();
-                //foreach (var author in allAuthors)
-                //{
-                //    Console.WriteLine(author);
-                //}
+                var allAuthors = authorProvider.GetAllAuthors();
+                foreach (var author in allAuthors)
+                {
+                    Console.WriteLine(author);
+                }
 
                 //var author = new Author
                 //{
@@ -61,18 +61,18 @@ namespace MainConsole
                 //    Console.WriteLine("Not deleted");
                 //}
 
-                var author = authorProvider.LoadAuthor(166, true);
+                //var author = authorProvider.LoadAuthor(166, true);
 
-                Console.WriteLine(author);
+                //Console.WriteLine(author);
 
-                foreach (var novel in author.Novels)
-                {
-                    Console.WriteLine(novel);
-                }
+                //foreach (var novel in author.Novels)
+                //{
+                //    Console.WriteLine(novel);
+                //}
 
-                
+
             }
-            
+
         }
     }
 }
