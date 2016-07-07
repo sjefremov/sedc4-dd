@@ -16,6 +16,7 @@ namespace DataLayer
         }
 
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Novel> Novels { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
